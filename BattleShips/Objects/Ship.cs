@@ -1,13 +1,14 @@
-﻿
-namespace BattleShips
+﻿using BattleShips.Helpers;
+
+namespace BattleShips.Objects
 {
-    class Ship
-    {        
+    class Ship : IShip
+    {
         public int Size { get; set; }
         public int Hits { get; set; }
         public string Name { get; set; }
         public string Symbol { get; set; }
-        public List<String> Positions { get; set; }
+        public List<string> Positions { get; set; }
 
         private static readonly Random random = new Random();
 
@@ -21,7 +22,7 @@ namespace BattleShips
             Name = name;
             Symbol = symbol;
             IsSunk = false;
-            Positions = new List<String>();
+            Positions = new List<string>();
             AddShipToBoard(board);
 
         }
@@ -42,8 +43,8 @@ namespace BattleShips
                 int startCol = random.Next(boardSize);
 
                 // ensure the ship fits within the board boundaries
-                if ((isHorizontal && startCol + Size > boardSize) ||
-                    (!isHorizontal && startRow + Size > boardSize))
+                if (isHorizontal && startCol + Size > boardSize ||
+                    !isHorizontal && startRow + Size > boardSize)
                 {
                     continue; // try again if out of bounds
                 }
@@ -64,7 +65,7 @@ namespace BattleShips
                 if (overlap) continue; // try again if overlapping
 
                 // place the ship
-                for (int i = 1; i <=Size; i++)
+                for (int i = 1; i <= Size; i++)
                 {
                     int row = isHorizontal ? startRow : startRow + i;
                     int col = isHorizontal ? startCol + i : startCol;

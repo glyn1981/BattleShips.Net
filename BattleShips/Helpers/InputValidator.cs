@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
 
-namespace BattleShips
+namespace BattleShips.Helpers
 {
     public class InputValidator
     {

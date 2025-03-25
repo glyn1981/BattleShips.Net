@@ -1,4 +1,4 @@
-﻿namespace BattleShips
+﻿namespace BattleShips.Objects
 {
     internal interface IGame
     {

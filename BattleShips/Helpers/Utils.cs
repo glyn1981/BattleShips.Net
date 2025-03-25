@@ -1,5 +1,4 @@
-﻿
-namespace BattleShips
+﻿namespace BattleShips.Helpers
 {
     class Utils
     {

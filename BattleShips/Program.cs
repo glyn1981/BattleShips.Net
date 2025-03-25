@@ -1,4 +1,6 @@
 ﻿
+using BattleShips.Objects;
+
 namespace BattleShips
 {
     class BattleShipsGame

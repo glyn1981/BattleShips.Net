@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.Design;
+﻿using BattleShips.Helpers;
+using System.ComponentModel.Design;
 
-namespace BattleShips
+namespace BattleShips.Objects
 {
-    class Game
+    class Game : IGame
     {
         private const int BOARD_SIZE = 10;
         private char[,] board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
@@ -50,10 +51,10 @@ namespace BattleShips
                 }
                 else
                 {
-                    Console.Write($"{row} "); 
+                    Console.Write($"{row} ");
                 }
-              
-               
+
+
 
 
                 for (int col = 1; col <= BOARD_SIZE; col++)
@@ -79,35 +80,35 @@ namespace BattleShips
                 //make sure the guess is valid
                 if (!string.IsNullOrWhiteSpace(guess) && inputValidator.IsValidA1Format(guess))
                 {
-                        int col = Utils.CharToNumber(guess[0]);
-                        int row = int.Parse(guess.Substring(1));
+                    int col = Utils.CharToNumber(guess[0]);
+                    int row = int.Parse(guess.Substring(1));
 
-                        //make sure the guess has not already been made
-                        if (inputValidator.AlreadyGuessed(guess, guesses))
-                        {
-                            Console.WriteLine("You have already guessed that position. Please enter a new guess.");
-                            continue;
-                        }
+                    //make sure the guess has not already been made
+                    if (inputValidator.AlreadyGuessed(guess, guesses))
+                    {
+                        Console.WriteLine("You have already guessed that position. Please enter a new guess.");
+                        continue;
+                    }
 
-                        guesses.Add(guess);
+                    guesses.Add(guess);
 
-                        // check if the guess is a hit
-                        if (IsHit(guess))
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Hit!");
-                            board[col, row] = 'X';
-                            Ship ship = ships.Single(x => x.Positions.Contains(guess));
-                            ship.Hit();
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Miss!");
-                            board[col, row] = 'O';
-                        }
+                    // check if the guess is a hit
+                    if (IsHit(guess))
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Hit!");
+                        board[col, row] = 'X';
+                        Ship ship = ships.Single(x => x.Positions.Contains(guess));
+                        ship.Hit();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Miss!");
+                        board[col, row] = 'O';
+                    }
 
-                        break; // Exit loop on valid input
+                    break; // Exit loop on valid input
                 }
                 else
                 {
