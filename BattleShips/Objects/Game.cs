@@ -207,8 +207,8 @@ namespace BattleShips.Objects
                 {
                     int row = isHorizontal ? startRow : startRow + i;
                     int col = isHorizontal ? startCol + i : startCol;
-                    //  board[col, row] = Symbol[0]; // uncomment to show ship on board
                     theShip.Positions.Add($"{Utils.NumberToChar(col)}{row}"); // Store ship position
+                    //board[col, row] = 'S'; // uncomment to show ship on board
 
                 }
 
