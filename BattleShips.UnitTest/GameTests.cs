@@ -21,7 +21,7 @@ namespace BattleShips.UnitTest
         {
             Helpers.InputValidator inputValidator = new Helpers.InputValidator();
 
-            Assert.False(inputValidator.AlreadyGuessed("A1", ["B1","C1","D1" ]));
+            Assert.False(inputValidator.AlreadyGuessed("A1", ["B1", "C1", "D1"]));
             Assert.True(inputValidator.AlreadyGuessed("A1", ["A1", "C1", "D1"]));
         }
 
@@ -75,7 +75,7 @@ namespace BattleShips.UnitTest
             foreach (string guess in guesses)
             {
                 //check each ship to see if it is a hit
-                foreach ( Ship thisShip in shipList)
+                foreach (Ship thisShip in shipList)
                 {
                     thisShip.IsHit(guesses);
                 }
@@ -90,8 +90,35 @@ namespace BattleShips.UnitTest
 
         }
 
+        [Fact]
+        public void TestGameLogic2()
+        {
+            List<Ship> shipList = new List<Ship>();
+
+            Ship ship = new Ship(3, "Test Ship", "T");
+            ship.Positions.Add("C1");
+            ship.Positions.Add("D1");
+            ship.Positions.Add("E1");
 
 
+            Ship ship2 = new Ship(3, "Test Ship", "T");
+            ship2.Positions.Add("C2");
+            ship2.Positions.Add("D2");
+            ship2.Positions.Add("E2");
+            ship2.Positions.Add("F2");
 
+
+            shipList.Add(ship);
+            shipList.Add(ship2);
+
+            List<string> guesses = ["C1", "D1", "E1", "C2", "D2"];
+
+            ship.IsHit(guesses);
+            ship2.IsHit(guesses);
+
+            Game gameObject = new Game(shipList, new List<string>(), new Random());
+            Assert.False(gameObject.CheckGameOver());
+
+        }
     }
 }
