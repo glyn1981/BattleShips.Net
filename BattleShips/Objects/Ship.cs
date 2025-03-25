@@ -19,7 +19,7 @@
             Symbol = symbol;
             IsSunk = false;
             Positions = new List<string>();
-   
+
         }
 
 
@@ -34,15 +34,13 @@
         }
 
         //has the ship been hit?
-        public bool IsHit(List<string> guesses)
+        public bool IsHit(string guess)
         {
-            foreach (var guess in guesses)
+
+            if (Positions.Contains(guess))
             {
-                if (Positions.Contains(guess))
-                {
-                    Hit();
-                    return true;
-                }
+                Hit();
+                return true;
             }
             return false;
         }

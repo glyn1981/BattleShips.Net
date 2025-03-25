@@ -3,8 +3,7 @@
     public interface IGame
     {
         bool CheckGameOver();
-        void DisplayBoard();
-        void GetGuess();
+        void NextTurn();
         void Start();
     }
 }

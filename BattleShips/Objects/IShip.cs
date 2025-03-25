@@ -9,6 +9,6 @@
         string Symbol { get; set; }
 
         void Hit();
-        bool IsHit(List<string> guesses);
+        bool IsHit(string guess);
     }
 }

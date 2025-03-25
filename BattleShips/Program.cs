@@ -8,6 +8,9 @@ namespace BattleShips
 
         static void Main()
         {
+
+            GameDisplay gameDisplay = new GameDisplay();    
+
             // create a new game
             Game game = new Game(new List<Ship>(), new List<string>(), new Random());
             // start the game
@@ -15,17 +18,15 @@ namespace BattleShips
 
             while (game.CheckGameOver() == false)
             {
-                // update the output to show the current state of the game
-                game.DisplayBoard();
-                // get the user's guess
-                game.GetGuess();
-
+                game.NextTurn();
             }
 
             //the game is over, you won !.
             Console.Clear();
             Console.WriteLine("Game Over!");
             Console.WriteLine("Restart to play again.");
+            Thread.Sleep(5000);
+                
         }
 
     }
