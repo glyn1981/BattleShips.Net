@@ -1,6 +1,6 @@
 ﻿namespace BattleShips.Helpers
 {
-    class Utils
+   public  class Utils : IUtils
     {
         /// <summary>
         /// converts a board column letter to a number

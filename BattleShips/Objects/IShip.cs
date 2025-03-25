@@ -1,6 +1,6 @@
 ﻿namespace BattleShips.Objects
 {
-    internal interface IShip
+    public interface IShip
     {
         int Hits { get; set; }
         string Name { get; set; }

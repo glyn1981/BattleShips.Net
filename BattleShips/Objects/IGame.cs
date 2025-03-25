@@ -1,6 +1,6 @@
 ﻿namespace BattleShips.Objects
 {
-    internal interface IGame
+    public interface IGame
     {
         bool CheckGameOver();
         void DisplayBoard();

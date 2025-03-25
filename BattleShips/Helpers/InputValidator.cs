@@ -1,13 +1,17 @@
-﻿using System.Text.RegularExpressions;
-
+﻿
 
 namespace BattleShips.Helpers
 {
-    public class InputValidator
+    using System.Text.RegularExpressions;
+
+    public class InputValidator : IInputValidator
     {
         /// <summary>
         /// validates the input format for the game board
         /// </summary>
+        /// 
+        ///
+
         public bool IsValidA1Format(string input)
         {
             if (string.IsNullOrEmpty(input) || input.Length < 2 || input.Length > 3)

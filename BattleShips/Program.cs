@@ -9,7 +9,7 @@ namespace BattleShips
         static void Main()
         {
             // create a new game
-            Game game = new Game();
+            Game game = new Game(new List<Ship>(), new List<string>(), new Random());
             // start the game
             game.Start();
 

@@ -1,14 +1,24 @@
 ﻿using BattleShips.Helpers;
-using System.ComponentModel.Design;
 
 namespace BattleShips.Objects
 {
-    class Game : IGame
+    public class Game : IGame
     {
         private const int BOARD_SIZE = 10;
-        private char[,] board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
-        private List<Ship> ships = new List<Ship>();
-        private List<string> guesses = new List<string>();
+        private readonly char[,] board;
+        private readonly List<Ship> ships;
+        private readonly List<string> guesses;
+        private readonly Random random;
+        private readonly IInputValidator inputValidator;
+        private readonly IUtils utils;
+
+        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser )
+        {
+            board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
+            ships = Ships;
+            guesses = Guesses;
+            random = randomiser;
+        }
 
         /// <summary>
         /// Starts a new game of Battleships
@@ -17,7 +27,12 @@ namespace BattleShips.Objects
         {
             //inisitalise the board and ships
             InitBoard();
-            InitShips();
+
+            if(ships.Count == 0)
+            {
+                InitShips();
+            }   
+
             //display the board.
             DisplayBoard();
             //get the users guess
@@ -47,15 +62,11 @@ namespace BattleShips.Objects
                 if (row < 10)
                 {
                     Console.Write($"{row}  ");
-
                 }
                 else
                 {
                     Console.Write($"{row} ");
                 }
-
-
-
 
                 for (int col = 1; col <= BOARD_SIZE; col++)
                 {
@@ -144,10 +155,72 @@ namespace BattleShips.Objects
         /// </summary>
         private void InitShips()
         {
-            ships.Add(new Ship(5, "Battleship", "C", board));
-            ships.Add(new Ship(4, "Destroyer", "B", board));
-            ships.Add(new Ship(4, "Destroyer", "B", board));
+            ships.Add(new Ship(5, "Battleship", "C"));
+            ships.Add(new Ship(4, "Destroyer", "B"));
+            ships.Add(new Ship(4, "Destroyer", "B"));
+
+            for (int i = 0; i < ships.Count; i++)
+            {
+                AddShipToBoard(ships[i]);
+            }
+
         }
+
+        private bool AddShipToBoard(Ship theShip)
+        {
+
+            int boardSize = board.GetLength(0) - 1;
+            bool isPlaced = false;
+            int attempts = 0;
+
+            while (!isPlaced && attempts < 100) // prevent infinite loops by limiting attempts
+            {
+                attempts++;
+                bool isHorizontal = random.Next(2) == 0; // pick orientation at random. 0 = horizontal, 1 = vertical
+                int startRow = random.Next(boardSize);
+                int startCol = random.Next(boardSize);
+
+                // ensure the ship fits within the board boundaries
+                if (isHorizontal && startCol + theShip.Size > boardSize ||
+                    !isHorizontal && startRow + theShip.Size > boardSize)
+                {
+                    continue; // try again if out of bounds
+                }
+
+                // check for overlaps
+                bool overlap = false;
+                for (int i = 1; i <= theShip.Size; i++)
+                {
+                    int row = isHorizontal ? startRow : startRow + i;
+                    int col = isHorizontal ? startCol + i : startCol;
+                    if (board[col, row] != ' ') // If not empty, there's an overlap
+                    {
+                        overlap = true;
+                        break;
+                    }
+                }
+
+                if (overlap) continue; // try again if overlapping
+
+                // place the ship
+                for (int i = 1; i <= theShip.Size; i++)
+                {
+                    int row = isHorizontal ? startRow : startRow + i;
+                    int col = isHorizontal ? startCol + i : startCol;
+                    //  board[col, row] = Symbol[0]; // uncomment to show ship on board
+                    theShip.Positions.Add($"{Utils.NumberToChar(col)}{row}"); // Store ship position
+
+                }
+
+                isPlaced = true;
+            }
+
+            return isPlaced; // true if placed successfully, False otherwise
+
+        }
+
+
+
 
         /// <summary>
         /// Checks if the guess is a hit
