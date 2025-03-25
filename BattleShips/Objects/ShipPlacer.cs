@@ -1,5 +1,6 @@
 ﻿using BattleShips.Helpers;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace BattleShips.Objects
 {
@@ -8,12 +9,13 @@ namespace BattleShips.Objects
      
         public bool AddShipToBoard(Ship theShip, char[,] board)
         {
+            const int NUMBER_OF_TRIES = 100;
             Random random = new Random();
             int boardSize = board.GetLength(0) - 1;
             bool isPlaced = false;
             int attempts = 0;
 
-            while (!isPlaced && attempts < 100) // prevent infinite loops by limiting attempts
+            while (!isPlaced && attempts < NUMBER_OF_TRIES) // prevent infinite loops by limiting attempts
             {
                 attempts++;
                 bool isHorizontal = random.Next(2) == 0; // pick orientation at random. 0 = horizontal, 1 = vertical
