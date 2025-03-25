@@ -75,7 +75,7 @@ namespace BattleShips.Objects
             while (true)
             {
                 Console.WriteLine("Enter your guess:");
-                string? guess = Console.ReadLine();
+                string? guess = Console.ReadLine()?.ToUpper();
 
                 //make sure the guess is valid
                 if (!string.IsNullOrWhiteSpace(guess) && inputValidator.IsValidA1Format(guess))
