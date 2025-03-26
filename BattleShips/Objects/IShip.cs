@@ -1,5 +1,8 @@
 ﻿namespace BattleShips.Objects
 {
+    /// <summary>
+    /// The ship object
+    /// </summary>
     public interface IShip
     {
         int Hits { get; set; }

@@ -4,6 +4,9 @@ namespace BattleShips.Helpers
 {
     using System.Text.RegularExpressions;
 
+    /// <summary>
+    /// class that handles input validation
+    /// </summary>
     public class InputValidator : IInputValidator
     {
         /// <summary>

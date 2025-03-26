@@ -1,12 +1,18 @@
 ﻿using BattleShips.Helpers;
-using System;
-using System.Runtime.CompilerServices;
 
 namespace BattleShips.Objects
 {
+    /// <summary>
+    /// Places ships on the board
+    /// </summary>
     class ShipPlacer
     {
-     
+        /// <summary>
+        /// Adds a ship to the board
+        /// </summary>
+        /// <param name="theShip">the ship which we will be adding to the board.</param>
+        /// <param name="board">the game board object</param>
+        /// <returns></returns>
         public bool AddShipToBoard(Ship theShip, char[,] board)
         {
             const int NUMBER_OF_TRIES = 100;
