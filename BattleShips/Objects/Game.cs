@@ -18,6 +18,7 @@ namespace BattleShips.Objects
         private IShipStrikeChecker _shipStrikeChecker;
         private IBoardInitialiser _boardInitialiser;
         private IShipInitialiser _shipInitialiser;
+        private IGameDisplay _gameDisplay;
 
 
         /// <summary>
@@ -26,8 +27,8 @@ namespace BattleShips.Objects
         /// <param name="Ships">The collection of ships</param>
         /// <param name="Guesses">A collection of guesses</param>
         /// <param name="randomiser">The Random object</param>
-        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser, IInputValidator inputValidator,IUtils utils, IInputHandler inputHandler, IShipStrikeChecker shipStrikeChecker,IShipInitialiser shipInitialiser, IBoardInitialiser boardInitialiser
-            )
+        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser, IInputValidator inputValidator,IUtils utils, IInputHandler inputHandler, IShipStrikeChecker shipStrikeChecker,IShipInitialiser shipInitialiser, IBoardInitialiser boardInitialiser, IGameDisplay gameDisplay)
+           
         {
             _board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
             _ships = Ships;
@@ -39,6 +40,7 @@ namespace BattleShips.Objects
             _shipStrikeChecker = shipStrikeChecker;
             _boardInitialiser = boardInitialiser;
             _shipInitialiser = shipInitialiser;
+            _gameDisplay = gameDisplay; 
         }
 
         /// <summary>
@@ -66,8 +68,7 @@ namespace BattleShips.Objects
         public void NextTurn()
         {
             //display the board.
-            GameDisplay gameDisplay = new GameDisplay();
-            gameDisplay.DisplayBoard(_ships, BOARD_SIZE, _board);
+            _gameDisplay.DisplayBoard(_ships, BOARD_SIZE, _board);
 
             //get the users guess
             _inputHandler.GetGuess(_guesses, _ships, _board, _utils,_inputValidator, _shipStrikeChecker);

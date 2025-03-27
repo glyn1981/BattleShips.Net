@@ -4,7 +4,7 @@ namespace BattleShips.Objects
     /// <summary>
     /// handles displaying the game
     /// </summary>
-    class GameDisplay : IGameDisplay
+    public class GameDisplay : IGameDisplay
     {
 
         /// <summary>
