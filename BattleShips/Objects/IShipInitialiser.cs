@@ -6,7 +6,7 @@ namespace BattleShips.Objects
     /// <summary>
     /// Handles ship initialisation.
     /// </summary>
-    internal interface IShipInitialiser
+    public interface IShipInitialiser
     {
         void InitShips(List<Ship> ships, char[,] board, Random random, IUtils utils);
     }

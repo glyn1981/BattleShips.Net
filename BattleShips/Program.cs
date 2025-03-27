@@ -19,10 +19,11 @@ namespace BattleShips
             IInputHandler inputHandler = new InputHandler();
             IInputValidator inputValidator = new InputValidator();
             IShipStrikeChecker shipStrikeChecker = new ShipStrikeChecker();
-
+            IBoardInitialiser boardInitialiser = new BoardInitialiser();
+            IShipInitialiser shipInitialiser = new ShipInitialiser();   
 
             // create a new game with dependency injection
-            Game game = new Game(ships, guesses, random, inputValidator, utils, inputHandler, shipStrikeChecker);
+            Game game = new Game(ships, guesses, random, inputValidator, utils, inputHandler, shipStrikeChecker,shipInitialiser, boardInitialiser);
             // start the game
             game.Start();
 

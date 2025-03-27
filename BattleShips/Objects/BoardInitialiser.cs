@@ -4,7 +4,7 @@ namespace BattleShips.Objects
     /// <summary>
     /// Class that initialises the board.
     /// </summary>
-    class BoardInitialiser : IBoardInitialiser
+    public class BoardInitialiser : IBoardInitialiser
     {
     /// <summary>
     /// Initialises the game board

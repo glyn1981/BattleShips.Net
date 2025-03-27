@@ -116,7 +116,7 @@ namespace BattleShips.UnitTest
             }
 
             //since all ships have  been sunk the game should be over.
-            Game gameObject = new Game(shipList, new List<string>(), new Random(), new InputValidator(), new Utils(),new InputHandler(), new ShipStrikeChecker());
+            Game gameObject = new Game(shipList, new List<string>(), new Random(), new InputValidator(), new Utils(),new InputHandler(), new ShipStrikeChecker(), new ShipInitialiser(), new BoardInitialiser());
             Assert.True(gameObject.CheckGameOver());
         }
 
@@ -150,7 +150,7 @@ namespace BattleShips.UnitTest
             shipList.Add(ship2);
 
             //since all ships have not been sunk the game should not be over.
-            Game gameObject = new Game(shipList, new List<string>(), new Random(), new InputValidator(), new Utils(), new InputHandler( ), new ShipStrikeChecker());
+            Game gameObject = new Game(shipList, new List<string>(), new Random(), new InputValidator(), new Utils(), new InputHandler( ), new ShipStrikeChecker(), new ShipInitialiser(), new BoardInitialiser());
             Assert.False(gameObject.CheckGameOver());
         }
 

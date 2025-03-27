@@ -5,7 +5,7 @@ namespace BattleShips.Objects
     /// <summary>
     /// Initialises the ships
     /// </summary>
-    class ShipInitialiser : IShipInitialiser
+    public class ShipInitialiser : IShipInitialiser
     {
         /// <summary>
         /// Initializes new random ships

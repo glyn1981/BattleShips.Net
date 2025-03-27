@@ -8,7 +8,7 @@ namespace BattleShips.Objects
     public class Game : IGame
     {
         private const int BOARD_SIZE = 10;
-        private readonly char[,] board;
+        private readonly char[,] _board;
         private readonly List<Ship> _ships;
         private readonly List<string> _guesses;
         private readonly Random _random;
@@ -16,6 +16,9 @@ namespace BattleShips.Objects
         private IInputHandler _inputHandler;
         private IUtils _utils;
         private IShipStrikeChecker _shipStrikeChecker;
+        private IBoardInitialiser _boardInitialiser;
+        private IShipInitialiser _shipInitialiser;
+
 
         /// <summary>
         /// DI Constructor
@@ -23,9 +26,10 @@ namespace BattleShips.Objects
         /// <param name="Ships">The collection of ships</param>
         /// <param name="Guesses">A collection of guesses</param>
         /// <param name="randomiser">The Random object</param>
-        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser, IInputValidator inputValidator, IUtils utils, IInputHandler inputHandler, IShipStrikeChecker shipStrikeChecker)
+        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser, IInputValidator inputValidator,IUtils utils, IInputHandler inputHandler, IShipStrikeChecker shipStrikeChecker,IShipInitialiser shipInitialiser, IBoardInitialiser boardInitialiser
+            )
         {
-            board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
+            _board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
             _ships = Ships;
             _guesses = Guesses;
             _random = randomiser;
@@ -33,6 +37,8 @@ namespace BattleShips.Objects
             _utils = utils;
             _inputHandler = inputHandler;
             _shipStrikeChecker = shipStrikeChecker;
+            _boardInitialiser = boardInitialiser;
+            _shipInitialiser = shipInitialiser;
         }
 
         /// <summary>
@@ -42,15 +48,13 @@ namespace BattleShips.Objects
         {
             //inisitalise the board and ships
 
-            BoardInitialiser boardInitialiser = new BoardInitialiser();
-            boardInitialiser.InitBoard(BOARD_SIZE, board);
+            _boardInitialiser.InitBoard(BOARD_SIZE, _board);
 
             //if there were no ships DI'd in then create them.
             //added to support unit testing.
             if (_ships.Count == 0)
             {
-                ShipInitialiser shipInitialiser = new ShipInitialiser();
-                shipInitialiser.InitShips(_ships, board,_random, _utils);
+                _shipInitialiser.InitShips(_ships, _board,_random, _utils);
             }
 
             NextTurn();
@@ -63,10 +67,10 @@ namespace BattleShips.Objects
         {
             //display the board.
             GameDisplay gameDisplay = new GameDisplay();
-            gameDisplay.DisplayBoard(_ships, BOARD_SIZE, board);
+            gameDisplay.DisplayBoard(_ships, BOARD_SIZE, _board);
 
             //get the users guess
-            _inputHandler.GetGuess(_guesses, _ships, board, _utils,_inputValidator, _shipStrikeChecker);
+            _inputHandler.GetGuess(_guesses, _ships, _board, _utils,_inputValidator, _shipStrikeChecker);
         }
 
         /// <summary>
