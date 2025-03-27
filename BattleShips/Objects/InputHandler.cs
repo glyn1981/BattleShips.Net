@@ -4,19 +4,24 @@ namespace BattleShips.Objects
     /// <summary>
     /// Handles user input.
     /// </summary>
-    class InputHandler : IInputHandler
+    public class InputHandler : IInputHandler
     {
+
+
         /// <summary>
         /// Gets the user's guess for the next move
         /// </summary>
         /// <param name="guesses">a list of guesses</param>
         /// <param name="ships">a list of ships</param>
         /// <param name="board">the board object</param>
-        public void GetGuess(List<string> guesses, List<Ship> ships, char[,] board)
+        public void GetGuess(List<string> guesses, List<Ship> ships, char[,] board, 
+            IUtils utils, 
+            IInputValidator inputValidator,
+            IShipStrikeChecker shipStrikeChecker
+            )
         {
-            InputValidator inputValidator = new InputValidator();
-            ShipStrikeChecker shipStrikeChecker = new ShipStrikeChecker();
-
+      
+ 
             while (true)
             {
                 //get the users guess and convert it to the correct format
@@ -27,7 +32,7 @@ namespace BattleShips.Objects
                 if (!string.IsNullOrWhiteSpace(guess) && inputValidator.IsValidA1Format(guess))
                 {
                     //convert the guess to a column and row
-                    int col = Utils.CharToNumber(guess[0]);
+                    int col = utils.CharToNumber(guess[0]);
                     int row = int.Parse(guess.Substring(1));
 
                     //make sure the guess has not already been made

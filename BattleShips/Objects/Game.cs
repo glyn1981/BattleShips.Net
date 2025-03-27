@@ -1,4 +1,6 @@
-﻿namespace BattleShips.Objects
+﻿using BattleShips.Helpers;
+
+namespace BattleShips.Objects
 {
     /// <summary>
     /// Class that encompasses the game of battleships.
@@ -7,9 +9,13 @@
     {
         private const int BOARD_SIZE = 10;
         private readonly char[,] board;
-        private readonly List<Ship> ships;
-        private readonly List<string> guesses;
-        private readonly Random random;
+        private readonly List<Ship> _ships;
+        private readonly List<string> _guesses;
+        private readonly Random _random;
+        private IInputValidator _inputValidator;
+        private IInputHandler _inputHandler;
+        private IUtils _utils;
+        private IShipStrikeChecker _shipStrikeChecker;
 
         /// <summary>
         /// DI Constructor
@@ -17,12 +23,16 @@
         /// <param name="Ships">The collection of ships</param>
         /// <param name="Guesses">A collection of guesses</param>
         /// <param name="randomiser">The Random object</param>
-        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser)
+        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser, IInputValidator inputValidator, IUtils utils, IInputHandler inputHandler, IShipStrikeChecker shipStrikeChecker)
         {
             board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
-            ships = Ships;
-            guesses = Guesses;
-            random = randomiser;
+            _ships = Ships;
+            _guesses = Guesses;
+            _random = randomiser;
+            _inputValidator = inputValidator;
+            _utils = utils;
+            _inputHandler = inputHandler;
+            _shipStrikeChecker = shipStrikeChecker;
         }
 
         /// <summary>
@@ -37,19 +47,13 @@
 
             //if there were no ships DI'd in then create them.
             //added to support unit testing.
-            if (ships.Count == 0)
+            if (_ships.Count == 0)
             {
                 ShipInitialiser shipInitialiser = new ShipInitialiser();
-                shipInitialiser.InitShips(ships, board);
+                shipInitialiser.InitShips(_ships, board,_random, _utils);
             }
 
-            //display the board.
-            GameDisplay gameDisplay = new GameDisplay();
-            gameDisplay.DisplayBoard(ships, BOARD_SIZE, board);
-
-            //get the users guess
-            InputHandler inputHandler = new InputHandler();
-            inputHandler.GetGuess(guesses, ships, board);
+            NextTurn();
 
         }
         /// <summary>
@@ -59,11 +63,10 @@
         {
             //display the board.
             GameDisplay gameDisplay = new GameDisplay();
-            gameDisplay.DisplayBoard(ships, BOARD_SIZE, board);
+            gameDisplay.DisplayBoard(_ships, BOARD_SIZE, board);
 
             //get the users guess
-            InputHandler inputHandler = new InputHandler();
-            inputHandler.GetGuess(guesses, ships, board);
+            _inputHandler.GetGuess(_guesses, _ships, board, _utils,_inputValidator, _shipStrikeChecker);
         }
 
         /// <summary>
@@ -72,7 +75,7 @@
         public bool CheckGameOver()
         {
             //if all the ships are sunk then the game is over.
-            return ships.All(ship => ship.IsSunk);
+            return _ships.All(ship => ship.IsSunk);
         }
 
     }

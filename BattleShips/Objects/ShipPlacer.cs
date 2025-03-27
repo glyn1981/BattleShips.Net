@@ -6,6 +6,8 @@ namespace BattleShips.Objects
     /// Places ships on the board
     /// </summary>
     class ShipPlacer
+
+
     {
         /// <summary>
         /// Adds a ship to the board
@@ -13,10 +15,9 @@ namespace BattleShips.Objects
         /// <param name="theShip">the ship which we will be adding to the board.</param>
         /// <param name="board">the game board object</param>
         /// <returns></returns>
-        public bool AddShipToBoard(Ship theShip, char[,] board)
+        public bool AddShipToBoard(Ship theShip, char[,] board, Random random, IUtils utils)
         {
             const int NUMBER_OF_TRIES = 100;
-            Random random = new Random();
             int boardSize = board.GetLength(0) - 1;
             bool isPlaced = false;
             int attempts = 0;
@@ -55,7 +56,7 @@ namespace BattleShips.Objects
                 {
                     int row = isHorizontal ? startRow : startRow + i;
                     int col = isHorizontal ? startCol + i : startCol;
-                    theShip.Positions.Add($"{Utils.NumberToChar(col)}{row}"); // Store ship position
+                    theShip.Positions.Add($"{utils.NumberToChar(col)}{row}"); // Store ship position
                     //board[col, row] = 'S'; // uncomment to show ship on board
 
                 }

@@ -1,4 +1,5 @@
-﻿using BattleShips.Objects;
+﻿using BattleShips.Helpers;
+using BattleShips.Objects;
 
 namespace BattleShips.UnitTest
 {
@@ -115,7 +116,7 @@ namespace BattleShips.UnitTest
             }
 
             //since all ships have  been sunk the game should be over.
-            Game gameObject = new Game(shipList, new List<string>(), new Random());
+            Game gameObject = new Game(shipList, new List<string>(), new Random(), new InputValidator(), new Utils(),new InputHandler(), new ShipStrikeChecker());
             Assert.True(gameObject.CheckGameOver());
         }
 
@@ -149,7 +150,7 @@ namespace BattleShips.UnitTest
             shipList.Add(ship2);
 
             //since all ships have not been sunk the game should not be over.
-            Game gameObject = new Game(shipList, new List<string>(), new Random());
+            Game gameObject = new Game(shipList, new List<string>(), new Random(), new InputValidator(), new Utils(), new InputHandler( ), new ShipStrikeChecker());
             Assert.False(gameObject.CheckGameOver());
         }
 

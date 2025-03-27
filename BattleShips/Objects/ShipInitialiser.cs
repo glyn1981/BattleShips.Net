@@ -1,4 +1,6 @@
-﻿namespace BattleShips.Objects
+﻿using BattleShips.Helpers;
+
+namespace BattleShips.Objects
 {
     /// <summary>
     /// Initialises the ships
@@ -10,7 +12,7 @@
         /// </summary>
         /// <param name="ships">a list of ships</param>
         /// <param name="board">the game board object</param>
-        public void InitShips(List<Ship> ships, char[,] board)
+        public void InitShips(List<Ship> ships, char[,] board,Random random, IUtils utils)
         {
             ///create new ships
             ships.Add(new Ship(5, "Battleship", "C"));
@@ -21,7 +23,7 @@
             ShipPlacer shipPlacer = new ShipPlacer();
             for (int i = 0; i < ships.Count; i++)
             {
-                shipPlacer.AddShipToBoard(ships[i], board);
+                shipPlacer.AddShipToBoard(ships[i], board,random, utils);
             }
 
         }

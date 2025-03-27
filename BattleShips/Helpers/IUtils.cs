@@ -5,7 +5,7 @@
     /// </summary>
     public interface IUtils
     {
-        static abstract int CharToNumber(char c);
-        static abstract char NumberToChar(int number);
+         abstract int CharToNumber(char c);
+         abstract char NumberToChar(int number);
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using BattleShips.Helpers;
 using BattleShips.Objects;
 
 namespace BattleShips
@@ -12,7 +13,7 @@ namespace BattleShips
             GameDisplay gameDisplay = new GameDisplay();    
 
             // create a new game
-            Game game = new Game(new List<Ship>(), new List<string>(), new Random());
+            Game game = new Game(new List<Ship>(), new List<string>(), new Random(), new InputValidator(), new Utils(), new InputHandler(), new ShipStrikeChecker());
             // start the game
             game.Start();
 

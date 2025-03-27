@@ -1,11 +1,16 @@
 ﻿
+using BattleShips.Helpers;
+
 namespace BattleShips.Objects
 {
     /// <summary>
     /// Handles user input.
     /// </summary>
-    internal interface IInputHandler
+    public interface IInputHandler
     {
-        void GetGuess(List<string> guesses, List<Ship> ships, char[,] board);
+        void GetGuess(List<string> guesses, List<Ship> ships, char[,] board,
+            IUtils utils,
+            IInputValidator inputValidator,
+            IShipStrikeChecker shipStrikeChecker);
     }
 }

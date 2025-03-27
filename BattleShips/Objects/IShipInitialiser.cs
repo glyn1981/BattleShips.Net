@@ -1,4 +1,6 @@
 ﻿
+using BattleShips.Helpers;
+
 namespace BattleShips.Objects
 {
     /// <summary>
@@ -6,6 +8,6 @@ namespace BattleShips.Objects
     /// </summary>
     internal interface IShipInitialiser
     {
-        void InitShips(List<Ship> ships, char[,] board);
+        void InitShips(List<Ship> ships, char[,] board, Random random, IUtils utils);
     }
 }
