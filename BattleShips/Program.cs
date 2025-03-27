@@ -6,14 +6,23 @@ namespace BattleShips
 {
     class BattleShipsGame
     {
-
         static void Main()
         {
 
-            GameDisplay gameDisplay = new GameDisplay();    
+            GameDisplay gameDisplay = new GameDisplay();   
+            
+            //create the dependencies.
+            IUtils utils = new Utils();
+            List<Ship> ships = new List<Ship>();
+            List<string> guesses = new List<string>();
+            Random random = new Random();
+            IInputHandler inputHandler = new InputHandler();
+            IInputValidator inputValidator = new InputValidator();
+            IShipStrikeChecker shipStrikeChecker = new ShipStrikeChecker();
 
-            // create a new game
-            Game game = new Game(new List<Ship>(), new List<string>(), new Random(), new InputValidator(), new Utils(), new InputHandler(), new ShipStrikeChecker());
+
+            // create a new game with dependency injection
+            Game game = new Game(ships, guesses, random, inputValidator, utils, inputHandler, shipStrikeChecker);
             // start the game
             game.Start();
 
