@@ -11,6 +11,7 @@ namespace BattleShips.Objects
         void GetGuess(List<string> guesses, List<Ship> ships, char[,] board,
             IUtils utils,
             IInputValidator inputValidator,
-            IShipStrikeChecker shipStrikeChecker);
+            IShipStrikeChecker shipStrikeChecker,
+            IUserInterface userInterface);
     }
 }

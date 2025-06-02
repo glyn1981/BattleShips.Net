@@ -1,4 +1,5 @@
 ﻿using BattleShips.Helpers;
+using System.Diagnostics.Contracts;
 namespace BattleShips.Objects
 {
     /// <summary>
@@ -17,7 +18,8 @@ namespace BattleShips.Objects
         public void GetGuess(List<string> guesses, List<Ship> ships, char[,] board, 
             IUtils utils, 
             IInputValidator inputValidator,
-            IShipStrikeChecker shipStrikeChecker
+            IShipStrikeChecker shipStrikeChecker,
+            IUserInterface userInterface
             )
         {
       
@@ -25,7 +27,13 @@ namespace BattleShips.Objects
             while (true)
             {
                 //get the users guess and convert it to the correct format
-                Console.WriteLine("Enter your guess:");
+
+                Contract.Requires(userInterface!=null);
+
+                 userInterface?.WriteLine("Enter your guess:");
+                 userInterface?.ReadLine();
+
+
                 string? guess = Console.ReadLine()?.ToUpper();
 
                 //make sure the guess is valid
@@ -38,8 +46,9 @@ namespace BattleShips.Objects
                     //make sure the guess has not already been made
                     if (inputValidator.AlreadyGuessed(guess, guesses))
                     {
-                        Console.WriteLine("You have already guessed that position. Please enter a new guess.");
+                        userInterface?.WriteLine("You have already guessed that position. Please enter a new guess.");
                         continue;
+
                     }
                     //add the guess to the list of guesses
                     guesses.Add(guess);
@@ -47,16 +56,16 @@ namespace BattleShips.Objects
                     // check if the guess is a hit
                     if (shipStrikeChecker.IsHit(guess, ships))
                     {
-                        Console.Clear();
-                        Console.WriteLine("Hit!");
+                        userInterface?.Clear();
+                        userInterface?.WriteLine("Hit!");
                         board[col, row] = 'X';
                         Ship ship = ships.Single(x => x.Positions.Contains(guess));
                         ship.Hit();
                     }
                     else
                     {
-                        Console.Clear();
-                        Console.WriteLine("Miss!");
+                        userInterface?.Clear();
+                        userInterface?.WriteLine("Miss!");
                         board[col, row] = 'O';
                     }
 

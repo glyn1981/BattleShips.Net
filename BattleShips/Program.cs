@@ -8,8 +8,7 @@ namespace BattleShips
     {
         static void Main()
         {
- 
-            
+
             //create the dependencies.
             IUtils utils = new Utils();
             List<Ship> ships = new List<Ship>();
@@ -21,9 +20,11 @@ namespace BattleShips
             IBoardInitialiser boardInitialiser = new BoardInitialiser();
             IShipInitialiser shipInitialiser = new ShipInitialiser();
             IGameDisplay gameDisplay = new GameDisplay();
+            IUserInterface userInterface = new GameUserInterface();
 
             // create a new game with dependency injection
-            Game game = new Game(ships, guesses, random, inputValidator, utils, inputHandler, shipStrikeChecker,shipInitialiser, boardInitialiser,gameDisplay);
+            Game game = new Game(ships, guesses, random, inputValidator, utils, inputHandler, shipStrikeChecker,shipInitialiser, boardInitialiser,gameDisplay,userInterface);
+         
             // start the game
             game.Start();
 

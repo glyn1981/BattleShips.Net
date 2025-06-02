@@ -19,7 +19,7 @@ namespace BattleShips.Objects
         private IBoardInitialiser _boardInitialiser;
         private IShipInitialiser _shipInitialiser;
         private IGameDisplay _gameDisplay;
-
+        private IUserInterface _userInterface;
 
         /// <summary>
         /// DI Constructor
@@ -27,7 +27,18 @@ namespace BattleShips.Objects
         /// <param name="Ships">The collection of ships</param>
         /// <param name="Guesses">A collection of guesses</param>
         /// <param name="randomiser">The Random object</param>
-        public Game(List<Ship> Ships, List<string> Guesses, Random randomiser, IInputValidator inputValidator,IUtils utils, IInputHandler inputHandler, IShipStrikeChecker shipStrikeChecker,IShipInitialiser shipInitialiser, IBoardInitialiser boardInitialiser, IGameDisplay gameDisplay)
+        public Game(List<Ship> Ships,
+            List<string> Guesses,
+            Random randomiser,
+            IInputValidator inputValidator,
+            IUtils utils,
+            IInputHandler inputHandler,
+            IShipStrikeChecker shipStrikeChecker,
+            IShipInitialiser shipInitialiser, 
+            IBoardInitialiser boardInitialiser,
+            IGameDisplay gameDisplay,
+            IUserInterface userInterface
+            )
            
         {
             _board = new char[BOARD_SIZE + 1, BOARD_SIZE + 1];
@@ -40,7 +51,8 @@ namespace BattleShips.Objects
             _shipStrikeChecker = shipStrikeChecker;
             _boardInitialiser = boardInitialiser;
             _shipInitialiser = shipInitialiser;
-            _gameDisplay = gameDisplay; 
+            _gameDisplay = gameDisplay;
+            _userInterface = userInterface;
         }
 
         /// <summary>
@@ -71,7 +83,7 @@ namespace BattleShips.Objects
             _gameDisplay.DisplayBoard(_ships, BOARD_SIZE, _board);
 
             //get the users guess
-            _inputHandler.GetGuess(_guesses, _ships, _board, _utils,_inputValidator, _shipStrikeChecker);
+            _inputHandler.GetGuess(_guesses, _ships, _board, _utils,_inputValidator, _shipStrikeChecker,_userInterface);
         }
 
         /// <summary>
