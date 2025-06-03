@@ -21,21 +21,22 @@ namespace BattleShips
             IShipInitialiser shipInitialiser = new ShipInitialiser();
             IGameDisplay gameDisplay = new GameDisplay();
             IUserInterface userInterface = new GameUserInterface();
+            IGameOverChecker gameOverChecker = new GameOverChecker();
 
             // create a new game with dependency injection
             Game game = new Game(ships, guesses, random, inputValidator, utils, inputHandler, shipStrikeChecker,shipInitialiser, boardInitialiser,gameDisplay,userInterface);
-         
+
             // start the game
             game.Start();
 
-            while (game.CheckGameOver() == false)
+            while (gameOverChecker.GameOver(ships) == false)
             {
                 game.NextTurn();
             }
 
             //the game is over, you won !.
             Console.Clear();
-            Console.WriteLine("Game Over!");
+            Console.WriteLine("Success, you sank all the opponents ships.");
             Console.WriteLine("Restart to play again.");
             Thread.Sleep(5000);
                 

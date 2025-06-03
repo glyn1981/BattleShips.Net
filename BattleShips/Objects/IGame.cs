@@ -5,7 +5,6 @@
     /// </summary>
     public interface IGame
     {
-        bool CheckGameOver();
         void NextTurn();
         void Start();
     }

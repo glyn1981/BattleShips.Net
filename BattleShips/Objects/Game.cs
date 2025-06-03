@@ -86,14 +86,6 @@ namespace BattleShips.Objects
             _inputHandler.GetGuess(_guesses, _ships, _board, _utils,_inputValidator, _shipStrikeChecker,_userInterface);
         }
 
-        /// <summary>
-        /// Checks if the game is over
-        /// </summary>
-        public bool CheckGameOver()
-        {
-            //if all the ships are sunk then the game is over.
-            return _ships.All(ship => ship.IsSunk);
-        }
 
     }
 }

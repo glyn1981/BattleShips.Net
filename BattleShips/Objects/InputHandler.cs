@@ -30,11 +30,8 @@ namespace BattleShips.Objects
 
                 Contract.Requires(userInterface!=null);
 
-                 userInterface?.WriteLine("Enter your guess:");
-                 userInterface?.ReadLine();
-
-
-                string? guess = Console.ReadLine()?.ToUpper();
+                userInterface?.WriteLine("Enter your guess:");
+                string? guess = userInterface?.ReadLine()?.ToUpper();
 
                 //make sure the guess is valid
                 if (!string.IsNullOrWhiteSpace(guess) && inputValidator.IsValidA1Format(guess))
