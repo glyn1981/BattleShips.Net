@@ -12,11 +12,11 @@ A simple console-based Battleships game implemented in C# using Object-Oriented 
 
 ## 🚀 Getting Started
 
-### Prerequisites
+## Prerequisites
 
 - [.NET SDK](https://dotnet.microsoft.com/download) (version 6 or later)
 
-### Running the Game
+## Running the Game
 
 1. Clone the repository:
 
