@@ -24,7 +24,9 @@ git clone https://github.com/glyn1981/BattleShips.Net.git
 cd BattleShips.Net
 dotnet build
 dotnet run
-🧠 Code Structure
+
+
+## 🧠 Code Structure
 GameManager.cs: Controls game flow
 
 Ship.cs: Represents a ship
@@ -32,10 +34,10 @@ Ship.cs: Represents a ship
 Board.cs: Manages the playing grid
 
 Player.cs: Represents a human or AI player
-##📸 Screenshots
+## 📸 Screenshots
 Coming soon – Add a screenshot or GIF of gameplay
 
-##🛠️ Future Improvements
+## 🛠️ Future Improvements
 Smarter AI strategy
 
 GUI interface (WinForms or WPF)
@@ -44,5 +46,5 @@ Multiplayer support
 
 Save/load game state
 
-##📄 License
+## 📄 License
 MIT – free to use, modify, and share
