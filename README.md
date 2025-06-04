@@ -1,60 +1,49 @@
-# BattleShips.Net 🎯
+# 🛳️ BattleShips.Net
 
-A simple console-based Battleships game implemented in C# using Object-Oriented Programming and SOLID principles.
+A C# console implementation of the classic Battleships game. This project focuses on applying clean object-oriented principles, including SOLID and DRY, and demonstrates fundamental game design patterns in .NET.
 
-## 🎮 Features
+## 🎯 Features
 
-- Turn-based console game
-- Ship placement (manual or random)
-- Input validation
-- Win/lose detection
-- Clean code structure using interfaces and abstraction
+- Turn-based play against an AI opponent
+- Customizable grid and ship sizes
+- Hit/miss feedback and ship sinking logic
+- Clear separation of concerns
+- Designed with extensibility in mind
 
-## 🚀 Getting Started
+## 🧱 Technologies Used
 
-## Prerequisites
+- C#
+- .NET Core
+- Object-Oriented Programming
+- Basic Design Patterns (e.g., Factory, Strategy)
 
-- [.NET SDK](https://dotnet.microsoft.com/download) (version 6 or later)
-
-## Running the Game
-
-1. Clone the repository:
+## 🚀 How to Run
 
 ```bash
 git clone https://github.com/glyn1981/BattleShips.Net.git
-Navigate to the project folder:
-
-bash
-Copy
-Edit
 cd BattleShips.Net
-Run the game:
-
-bash
-Copy
-Edit
+dotnet build
 dotnet run
+🧠 Code Structure
+GameManager.cs: Controls game flow
+
+Ship.cs: Represents a ship
+
+Board.cs: Manages the playing grid
+
+Player.cs: Represents a human or AI player
+
 📸 Screenshots
-vbnet
-Copy
-Edit
-Player, it's your turn.
-Enter coordinates to fire (e.g. B4): 
-Hit!
-📁 Project Structure
-Program.cs - Entry point
+Coming soon – Add a screenshot or GIF of gameplay
 
-Game - Main game logic
+🛠️ Future Improvements
+Smarter AI strategy
 
-Board, Ship, Player - Core game components
+GUI interface (WinForms or WPF)
 
-Utils - Helpers and utilities
+Multiplayer support
 
-🧪 Future Improvements
-Add multiplayer
+Save/load game state
 
-Implement AI opponent
-
-Include a GUI version (WinForms or Blazor)
-
-Add unit tests with xUnit
+📄 License
+MIT – free to use, modify, and share
