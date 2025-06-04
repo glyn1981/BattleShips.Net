@@ -19,7 +19,7 @@ A C# console implementation of the classic Battleships game. This project focuse
 
 ## 🚀 How to Run
 
-```bash
+bash
 git clone https://github.com/glyn1981/BattleShips.Net.git
 cd BattleShips.Net
 dotnet build
