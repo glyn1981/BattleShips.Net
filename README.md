@@ -32,11 +32,10 @@ Ship.cs: Represents a ship
 Board.cs: Manages the playing grid
 
 Player.cs: Represents a human or AI player
-
-📸 Screenshots
+##📸 Screenshots
 Coming soon – Add a screenshot or GIF of gameplay
 
-🛠️ Future Improvements
+##🛠️ Future Improvements
 Smarter AI strategy
 
 GUI interface (WinForms or WPF)
@@ -45,5 +44,5 @@ Multiplayer support
 
 Save/load game state
 
-📄 License
+##📄 License
 MIT – free to use, modify, and share
